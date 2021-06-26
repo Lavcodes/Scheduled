@@ -6,7 +6,7 @@ const pool = require('./database_config');
 app.use(express.json());
 app.get("/", async(req, res)=>{
     try{
-        res.send({connected:successfully});
+        res.send({'connected':'successfully'});
     }catch(err){
         console.log(err);
     }
