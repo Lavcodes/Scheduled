@@ -20,7 +20,7 @@ class AddTeacher extends React.Component{
         const img_url = `https://ui-avatars.com/api/?name=${this.state.first_name}+${this.state.last_name}`;
         
         this.setState({avatar:img_url});
-        this.props.onSubmit(name, this.state.department, this.state.avatar);
+        this.props.onSubmit(name, this.state.department, img_url);
     }
 
     render(){

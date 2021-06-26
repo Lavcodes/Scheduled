@@ -60,6 +60,7 @@ updateDateFromInput =(e)=> {
 
  helper = async (start_at, end_at) =>{
    
+   
    await this.props.setDate(this.state.year,this.state.month,this.state.day);
    
 
@@ -88,22 +89,27 @@ updateDateFromInput =(e)=> {
      ret=false;
      this.setState({errors:{title_empty:true}});
    }
+   else this.setState({errors:{title_empty:false}, is_error:false});
    if(this.state.start_at===''){
      ret=false;
      this.setState({errors : {start_at_empty:true}});
    }
+   else this.setState({errors:{start_at_empty:false},is_error:false});
    if(this.state.end_at===''){
      ret=false;
      this.setState({errors :{end_at_empty:true}});
    }
-  /* if(this.state.day===''||this.state.month===''||this.state.year===''){
+   else this.setState({errors:{end_at_empty:false},is_error:false});
+   /*if(this.state.day===''||this.state.month===''||this.state.year===''){
      ret=false;
      this.setState({errors:{date_empty:true}});
-   }*/
+   }
+   else this.setState({errors:{date_empty:false}});*/
    if(this.state.start_at>this.state.end_at){
      ret=false;
      this.setState({errors:{start_greater_end:true}});
    }
+   else this.setState({errors:{start_greater_end:false},is_error:false});
  }
     
 
@@ -112,10 +118,14 @@ updateDateFromInput =(e)=> {
     //check
    const ok =await this.helper(this.state.start_at, this.state.end_at);
    const ok2=this.check_errors();
-   
+   if(ok&&ok2){
    
    await this.props.addEventAction(this.props.teacher_id, this.state);
-   
+   }
+   else{
+     this.setState({is_error:true});
+   }
+   console.log(this.state.errors);
    
   }
 

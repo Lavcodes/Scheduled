@@ -4,6 +4,26 @@ const pool = require('./database_config');
 
 
 app.use(express.json());
+app.get("/", async(req, res)=>{
+    try{
+        res.send({connected:successfully});
+    }catch(err){
+        console.log(err);
+    }
+});
+
+app.get('/db', async (req, res) => {
+    try {
+      const client = await pool.connect();
+      const result = await client.query('SELECT * FROM test_table');
+      const results = { 'results': (result) ? result.rows : null};
+      res.render('pages/db', results );
+      client.release();
+    } catch (err) {
+      console.error(err);
+      res.send("Error " + err);
+    }
+  })
 
 app.get("/teachers", async(req, res) =>{
     try{
@@ -16,6 +36,7 @@ app.get("/teachers", async(req, res) =>{
     }
 
 });
+
 
 // add a new teacher
 app.post("/teachers", async(req, res) => {
