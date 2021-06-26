@@ -1,0 +1,8 @@
+.navbar-fixed-top {
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0px;
+    background: white;
+    padding: 5px 7px 5px 7px;
+}
+
