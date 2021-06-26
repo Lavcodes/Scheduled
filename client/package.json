@@ -27,7 +27,7 @@
     "/teachers": {
       "target": "http://localhost:5000"
     },
-    "/events":{
+    "/events/*":{
       "target": "http://localhost:5000"
     }
   },

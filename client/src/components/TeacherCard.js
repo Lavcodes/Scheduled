@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import '../styles/TeacherCard.css';
 
 import { setTeacheridAction } from '../actions';
+import axios from 'axios';
 
 class TeacherCard extends React.Component {
 
@@ -15,12 +16,11 @@ class TeacherCard extends React.Component {
    
     render(){
         const VIEW_SCHEDULE = 'VIEW SCHEDULE';
-       
-
+    
         return (
         
             <div class="card">
-                <img src="https://randomuser.me/api/portraits/women/3.jpg" alt=""/>
+                <img src={this.props.avatar} alt=""/>
                 <h4>{this.props.name}</h4>
                 <small>{this.props.department}</small>
                 

@@ -20,8 +20,14 @@ class CreateEvent extends React.Component{
     year : '',
     start_at : '',
     end_at : '', 
+    is_error:false,
     errors :{
       event_time_clash : false,
+      title_empty : false,
+      date_empty:false,
+      start_at_empty : false,
+      end_at_empty:false,
+      start_greater_end:false,
     } 
   }
 
@@ -68,25 +74,49 @@ updateDateFromInput =(e)=> {
      return event;
    });
    if(problem){
-     return false;
+    this.setState({errors:{
+      event_time_clash:true
+    }});
+   
    }
    return true;
  }
 
-
+ check_errors = () =>{
+   let ret =true;
+   if(this.state.title===''){
+     ret=false;
+     this.setState({errors:{title_empty:true}});
+   }
+   if(this.state.start_at===''){
+     ret=false;
+     this.setState({errors : {start_at_empty:true}});
+   }
+   if(this.state.end_at===''){
+     ret=false;
+     this.setState({errors :{end_at_empty:true}});
+   }
+  /* if(this.state.day===''||this.state.month===''||this.state.year===''){
+     ret=false;
+     this.setState({errors:{date_empty:true}});
+   }*/
+   if(this.state.start_at>this.state.end_at){
+     ret=false;
+     this.setState({errors:{start_greater_end:true}});
+   }
+ }
     
 
 
   onButtonClick = async ()=>{
     //check
    const ok =await this.helper(this.state.start_at, this.state.end_at);
-   if(ok)
+   const ok2=this.check_errors();
+   
+   
    await this.props.addEventAction(this.props.teacher_id, this.state);
-   else {
-     this.setState({errors:{
-       event_time_clash:true
-     }})
-   }
+   
+   
   }
 
    
@@ -94,12 +124,51 @@ updateDateFromInput =(e)=> {
     
     render(){
       
-      const error_div = (
+      const time_clash_div = (
         this.state.errors.event_time_clash?
-        <div>error</div>:
+        <div>Another Event has been Scheduled during this time.</div>:
+        <div></div>)
+      const title_empty_div=(
+        this.state.errors.title_empty?
+          <div> Event must have a title.</div>:
         <div></div>
-        
       )
+      const start_at_empty_div=(
+        this.state.errors.start_at_empty?
+          <div> Event must have a start time.</div>:
+        <div></div>
+      )
+      const end_at_empty_div=(
+        this.state.errors.end_at_empty?
+          <div> Event must have an end time.</div>:
+        <div></div>
+      )
+      const date_empty_div = (
+        this.state.errors.date_empty?
+          <div> Event must have a date.</div>:
+        <div></div>
+      )
+      const start_greater_end_div =(
+        this.state.errors.start_greater_end?
+          <div>Start time of event must be before end time.</div>:
+        <div></div>
+      )
+
+      const error_div = (
+        this.state.is_error?
+      <div className="error-div">
+      {time_clash_div}
+      {title_empty_div}
+      {start_at_empty_div}
+      {end_at_empty_div}
+      {date_empty_div}
+      {start_greater_end_div}
+    </div>:<div></div>
+      )
+
+
+      
+     
 
       const  ret = (
             <div class="container">
@@ -108,6 +177,7 @@ updateDateFromInput =(e)=> {
                       value = {this.state.title}
                       onChange = {
                         (e)=>{
+                          this.setState({is_error:false});
                           this.setState({title:e.target.value});
                         }
                       }
@@ -117,68 +187,58 @@ updateDateFromInput =(e)=> {
                       value = {this.state.description}
                       onChange = {
                         (e) =>{
+                          this.setState({is_error:false});
                           this.setState({description:e.target.value})
                         }
                       }
                       
                       />
     
-                    <div className = "custom-contain">
-                        <label class="custom-radio-btn left">
-                        <span class="label">High priority</span>
-                        <input type="radio" name="sample" checked/>
-                        <span class="checkmark"></span>
-                        </label>
-                        <label class="custom-radio-btn left">
-                        <span class="label">Medium priority</span>
-                        <input type="radio" name="sample" />
-                        <span class="checkmark"></span>
-                        </label>
-                        <label class="custom-radio-btn left">
-                        <span class="label">Low priority</span>
-                        <input type="radio" name="sample" />
-                        <span class="checkmark"></span>
-                        </label>
-                        
-                    </div>
+                    
                     <div className="date-input-container">
                     <div className='date-label'>Date</div> 
                     <div className='mdp-input'>
                      
                     <input type='date'
                      
-                     onChange={this.updateDateFromInput} />
+                     onChange={this.updateDateFromInput }/>
                    </div>
                    </div>
 
 
-                    <div>
+                    <div className="start-end-box">
+                        <div className="time-input-single">
                         <label for="start-time">Start Time</label>    
                         <input type="time" placeholder="13:30" id="start-time"
                           value={this.state.start_at}
                           onChange={
                             (e) =>{
+                              this.setState({is_error:false});
                               this.setState({start_at:e.target.value})
                             }
                           }
                         
                         ></input>
+                        </div>
+                        <div className="time-input-single">
                         <label for="start-time">End Time</label>    
                         <input type="time" placeholder="13:30" id="end-time"
                           value={this.state.end_at}
                           onChange={
                             (e) =>{
+                              this.setState({is_error:false});
                               this.setState({end_at:e.target.value})
                             }
                           }
                         ></input>
+                        </div>
                     </div>
-                    {error_div}
+                    
                     <Button
                       title='Create Event'
                       onClick={this.onButtonClick}
                     ></Button>
-
+                    {error_div}
                     
                     </div>
         );

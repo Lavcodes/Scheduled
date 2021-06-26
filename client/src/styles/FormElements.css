@@ -242,3 +242,22 @@ body {
   .date-label {
     margin : 5px 5px 5px 5px;
   }
+
+  .start-end-box{
+    margin : 5px 5px 5px 5px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .time-input-single{
+    margin : 5px 5px 5px 5px;
+  }
+  .error-div{
+    margin: 5px 5px 5px 5px;
+    padding: 3px 3px 3px 3px;
+    border:solid red;
+    border-width: 0.5px;
+    border-radius: 6px;
+    background-color: #f5dcda
+
+  }

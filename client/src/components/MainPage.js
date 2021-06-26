@@ -25,9 +25,9 @@ class MainPage extends React.Component{
         this.setState({ show : false});
     };
 
-    onAddTeacherSubmit = async (name, department) =>{
+    onAddTeacherSubmit = async (name, department, avatar) =>{
       
-       await this.props.addTeacherAction(name, department);
+       await this.props.addTeacherAction(name, department, avatar);
     }
 
     componentDidMount = async () =>{
@@ -51,6 +51,7 @@ class MainPage extends React.Component{
             return <TeacherCard id={teacher.teacher_id} 
                         name ={teacher.teacher_name} 
                         department = {teacher.department}
+                        avatar={teacher.avatar}
                         onClick = {this.teacher_selected}
                         />
         });

@@ -9,7 +9,7 @@ const EventCard = (props) =>{
         <div className='event-container'
             styles = {{'background-color' :'#caffba'}}
         >
-            <div className='title'>Title</div>
+            <div className='title'>{props.title}</div>
             <div>{props.start_at} - {props.end_at}</div>
         </div>
     )

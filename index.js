@@ -20,9 +20,9 @@ app.get("/teachers", async(req, res) =>{
 // add a new teacher
 app.post("/teachers", async(req, res) => {
     try {
-        const { teacher_name, department} = req.body;
-        const new_teacher = await pool.query("INSERT INTO teachers (teacher_name, department) VALUES ($1, $2) RETURNING *", 
-        [teacher_name, department]);
+        const { teacher_name, department, avatar} = req.body;
+        const new_teacher = await pool.query("INSERT INTO teachers (teacher_name, department, avatar) VALUES ($1, $2, $3) RETURNING *", 
+        [teacher_name, department, avatar]);
         res.json(new_teacher);
     } catch(err){
         console.error(err);

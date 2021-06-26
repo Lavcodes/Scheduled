@@ -41,11 +41,12 @@ export const fetchTeachers = () =>{
     
 };
 
-export const addTeacherAction = (teacher_name, department ) =>{
-
+export const addTeacherAction = (teacher_name, department, avatar) =>{
+    console.log(avatar);
     const new_teacher = {
         teacher_name,
-        department
+        department, 
+        avatar
     }
     return async (dispatch, getState) => {
         const response = await axios.post('./teachers', new_teacher);
