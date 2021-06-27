@@ -11,7 +11,16 @@ class EventList extends React.Component{
 
     render(){
         const List = this.props.events_list.map((event)=>{
-            return <EventCard title ={event.title} day={event.day} month={event.month} year={event.year} description ={event.description} start_at ={event.start_at} end_at = {event.end_at}/>
+            return <EventCard 
+                        title ={event.title} 
+                        day={event.day} 
+                        month={event.month} 
+                        year={event.year} 
+                        description ={event.description} 
+                        start_at ={event.start_at} 
+                        end_at = {event.end_at}
+                        priority = {event.priority}
+                        />
         })
 
 

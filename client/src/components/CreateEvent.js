@@ -20,6 +20,8 @@ class CreateEvent extends React.Component{
     year : '',
     start_at : '',
     end_at : '', 
+    priority : 'Priority',
+
     is_error:false,
     errors :{
       event_time_clash : false,
@@ -212,6 +214,25 @@ updateDateFromInput =(e)=> {
                       }
                       
                       />
+
+
+                    <label class="dropdown">
+
+                    <div class={`dd-button ${this.state.priority}-priority`}>
+                      {this.state.priority}
+                    </div>
+
+                    <input type="checkbox" class="dd-input" id="test"/>
+
+                    <ul class="dd-menu">
+                      <li className="high-priority" onClick={()=>this.setState({priority : 'high'})}>High Priority</li>
+                      <li className="medium-priority" onClick={()=>this.setState({priority : 'medium'})}>Medium Priority</li>
+                      <li className="low-priority" onClick={()=>this.setState({priority : 'low'})}>Low Priority</li>
+        
+                    </ul>
+
+                    </label>
+
     
                     
                     <div className="date-input-container">
@@ -239,6 +260,7 @@ updateDateFromInput =(e)=> {
                         
                         ></input>
                         </div>
+                        <div class="divider"></div>
                         <div className="time-input-single">
                         <label for="start-time">End Time</label>    
                         <input type="time" placeholder="13:30" id="end-time"

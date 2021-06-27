@@ -64,3 +64,13 @@
 		height: 0.2em;
 		margin-right: .25em;
 	}
+
+	.low-priority{
+		background-color : #d4e2cb;
+	  }
+	  .medium-priority {
+		background-color : #cecbe2;
+	  }
+	  .high-priority {
+		background-color:#e2cccb;
+	  }

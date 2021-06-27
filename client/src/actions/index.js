@@ -61,10 +61,10 @@ export const addTeacherAction = (teacher_name, department, avatar) =>{
 };
 }
 
-export const addEventAction = (teacher_id, {month, year, day, title, description, start_at, end_at}) =>{
+export const addEventAction = (teacher_id, {month, year, day, title, description, start_at, end_at, priority}) =>{
 
     const new_event = {
-        teacher_id, month, year, day, title, description, start_at, end_at
+        teacher_id, month, year, day, title, description, start_at, end_at, priority
     }
     return async (dispatch, getState) => {
         const response = await axios.post('./events', new_event);

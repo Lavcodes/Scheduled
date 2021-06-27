@@ -18,5 +18,6 @@ CREATE TABLE events(
     year INT NOT NULL,
     day INT NOT NULL,
     start_at TIME NOT NULL,
-    end_at TIME NOT NULL
+    end_at TIME NOT NULL,
+    priority varchar(10)
 );

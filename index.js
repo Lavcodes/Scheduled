@@ -33,9 +33,9 @@ app.post("/teachers", async(req, res) => {
 
 app.post("/events", async(req, res) => {
     try{
-        const {teacher_id, title, description, month, year, day, start_at, end_at} = req.body;
-        const new_event = await pool.query("INSERT INTO events (teacher_id, title, description, month, year, day, start_at, end_at) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *",
-        [teacher_id, title, description, month, year, day, start_at, end_at] );
+        const {teacher_id, title, description, month, year, day, start_at, end_at, priority} = req.body;
+        const new_event = await pool.query("INSERT INTO events (teacher_id, title, description, month, year, day, start_at, end_at, priority) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *",
+        [teacher_id, title, description, month, year, day, start_at, end_at, priority] );
         res.json(new_event);
 
     }catch(err){

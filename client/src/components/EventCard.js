@@ -1,20 +1,31 @@
-import { checkPropTypes } from 'prop-types';
+
 import React from 'react';
 
 import '../styles/EventCard.css';
+import '../styles/FormElements.css';
 
-const EventCard = (props) =>{
+
+class EventCard extends React.Component{
+
+    
+
+
+    render(){
     const Months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
-    const idx = props.month-1;
+    const idx = this.props.month-1;
     const month = Months[idx];
     const cor = '#caffba';
-    const date = `${month} ${props.day}, ${props.year}`;
-    const time_string = `${props.start_at} - ${props.end_at}`;
+    const date = `${month} ${this.props.day}, ${this.props.year}`;
+    const time_string = `${this.props.start_at} - ${this.props.end_at}`;
+
+
+
     return (
-        <div className="event-card">
+      
+    <div className={`event-card ${this.props.priority}-priority`}>
 	
 	<div class="card-header">
-		{props.title}
+		{this.props.title}
 	</div>
 	<div class="card-footer">
 		
@@ -30,10 +41,11 @@ const EventCard = (props) =>{
 		</div>
         <div
         style={{color: '#787878'}} 
-        >{date}</div>
+        >{time_string}</div>
 	</div>
 </div>
     )
+    }
 }
 
 export default EventCard;
