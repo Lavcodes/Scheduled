@@ -28,6 +28,8 @@ export const setDate = (year=null, month=null, day=null)=>{
 export const fetchTeachers = () =>{
     return async (dispatch, getState) => {
             const {data} = await axios.get('./teachers', {});
+            console.log('inaction');
+            console.log(data.rows);
             
             dispatch({
                 type : SET_TEACHERS_LIST,

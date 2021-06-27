@@ -1,8 +1,11 @@
 import axios from 'axios';
 import React from 'react';
+import { connect } from 'react-redux';
 
 import Button from '../elements/Button';
 import Input from '../elements/Input';
+
+import { fetchTeachers } from '../actions';
 
 //hadle onclicj
 
@@ -20,7 +23,9 @@ class AddTeacher extends React.Component{
         const img_url = `https://ui-avatars.com/api/?name=${this.state.first_name}+${this.state.last_name}`;
         
         this.setState({avatar:img_url});
-        this.props.onSubmit(name, this.state.department, img_url);
+        await this.props.onSubmit(name, this.state.department, img_url);
+        await this.props.fetchTeachers();
+        
     }
 
     render(){
@@ -70,4 +75,14 @@ class AddTeacher extends React.Component{
     }
 }
 
-export default AddTeacher;
+const mapStateToProps = (state) =>{
+    return {
+        teacher_id: state.teacher_id,
+    }
+}
+
+export default connect(mapStateToProps, {
+   
+    fetchTeachers,
+    
+})(AddTeacher);

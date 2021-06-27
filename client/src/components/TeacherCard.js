@@ -9,8 +9,10 @@ import axios from 'axios';
 
 class TeacherCard extends React.Component {
 
-    clicked = ()=>{
-        this.props.onClick(this.props.id);
+    clicked = async ()=>{
+        console.log('here');
+        console.log(this.props.id);
+        await this.props.onClick(this.props.id);
 
     }
    

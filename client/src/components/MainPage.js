@@ -34,8 +34,10 @@ class MainPage extends React.Component{
         await this.props.fetchTeachers();
          
     }
+    
 
     teacher_selected = async (id) =>{
+        console.log(id);
        
         await this.props.setTeacheridAction(id);
         this.setState({selected:true});
@@ -48,6 +50,8 @@ class MainPage extends React.Component{
 
     render(){
         const List = this.props.teachers_list.map((teacher)=>{
+            console.log('inmain');
+            console.log(teacher);
             return <TeacherCard id={teacher.teacher_id} 
                         name ={teacher.teacher_name} 
                         department = {teacher.department}
