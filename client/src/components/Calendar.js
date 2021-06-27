@@ -38,7 +38,7 @@ class MyDatePicker extends Component {
     async componentDidMount() {
         window.addEventListener('click', this.addBackDrop);
         this.setDateToInput(this.state.selectedDay);
-        console.log(this.props.date);
+       
         const response = await this.props.filterEventsbyDay();
         
         
@@ -154,7 +154,7 @@ class MyDatePicker extends Component {
     }
 
     updateDateFromInput = async ()=> {
-        console.log('hey')
+        
         const dateValue = inputRef.current.value;
 
         const dateData = this.getDateFromDateString(dateValue);
@@ -175,11 +175,11 @@ class MyDatePicker extends Component {
     }
 
     setPropsfromInput = async (year,month,day)=>{
-        console.log(year,month, day);
+       
         await this.props.setDate(year,month+1,day);
         
         const response = await this.props.filterEventsbyDay();
-        console.log('hey');
+       
     }
 
     setDateToInput =(timestamp)=> {
@@ -189,10 +189,10 @@ class MyDatePicker extends Component {
 
     setProps = async (timestamp)=>{
         const {year, month, date} =this.getDateFromDateString(this.getDateStringFromTimestamp(timestamp));
-        //console.log(year, month, date);
+        
         await this.props.setDate(year,month,date);
         
-        console.log(this.props.date);
+       
         const response = await this.props.filterEventsbyDay();
     }
 

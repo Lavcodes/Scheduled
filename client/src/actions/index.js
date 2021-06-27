@@ -28,8 +28,7 @@ export const setDate = (year=null, month=null, day=null)=>{
 export const fetchTeachers = () =>{
     return async (dispatch, getState) => {
             const {data} = await axios.get('./teachers', {});
-            console.log(data.rows);
-
+            
             dispatch({
                 type : SET_TEACHERS_LIST,
                 payload : data.rows
@@ -42,7 +41,7 @@ export const fetchTeachers = () =>{
 };
 
 export const addTeacherAction = (teacher_name, department, avatar) =>{
-    console.log(avatar);
+    
     const new_teacher = {
         teacher_name,
         department, 
@@ -83,7 +82,6 @@ export const filterEventsbyDay = () =>{
 
     return async (dispatch, getState) => {
         const {teacher_id, date} = getState();
-        console.log(date);
 
         if(date.day!==undefined){
         const {data} = await axios.get(`./events/${teacher_id}/${date.year}/${date.month}/${date.day}`,{});

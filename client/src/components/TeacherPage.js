@@ -23,10 +23,7 @@ class TeacherPage extends React.Component{
         this.setState({ show : false});
     }
 
-    onChange= (timestamp) => {
-        console.log(timestamp);
-      }
-
+   
 
 
     render(){

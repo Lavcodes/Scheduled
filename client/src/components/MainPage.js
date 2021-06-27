@@ -36,7 +36,7 @@ class MainPage extends React.Component{
     }
 
     teacher_selected = async (id) =>{
-        console.log(id);
+       
         await this.props.setTeacheridAction(id);
         this.setState({selected:true});
 

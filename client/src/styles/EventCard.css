@@ -1,17 +1,66 @@
-.event-container {
-    border-radius: 6px;
-    background-color: #cecbe2;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding : 5px 5px 5px 5px;
-    margin : 3px 3px 3px 3px;
-    width : 100%;
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&display=swap');
+
+
+.event-card {
+	
+    background-color: #fff;
+    border-radius: 3px;
+    padding: 3px;
+    margin: 5px 5px 5px 5px;
+    text-align: center;
+    font-size: 0.8rem;
+    max-width: 100%;
+}
+	
+	
+
+
+.card-header {
+	margin-top: 0.1rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	
+		font-weight: 600;
+		font-size: 1rem;
+		line-height: 1.25;
+		
+		text-decoration: none;
+		color: inherit;}
+		
+	
+	
+
+
+
+.card-footer {
+	margin-top: 0.7rem;
+	border-top: 1px solid #ddd;
+	padding-top: 0.5rem;
+	display: flex;
+    justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
 }
 
-.title {
-    font-family: 'Lato', sans-serif;
-    font-weight: 1000;
-    font-stretch: normal;
-    font-style: normal;
-}
+.card-meta {	
+	display: flex;
+    justify-content: space-around;
+	align-items: center;
+	color: #787878;}
+.card-meta:first-child:after{
+		display: block;
+		content: "";
+		width: 4px;
+		height: 4px;
+		border-radius: 50%;
+		background-color: currentcolor;
+		margin-left: .75rem;
+		margin-right: .75rem;
+	}
+	.card-meta.svg {
+		flex-shrink: 0;
+		width: 0.2em;
+		height: 0.2em;
+		margin-right: .25em;
+	}
